@@ -1,0 +1,46 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 440 64"
+  role="img"
+  aria-labelledby="horizontal-light-title horizontal-light-desc"
+  focusable="false"
+>
+  <title id="horizontal-light-title">KAA – KI-Automatisierungs-Agentur</title>
+  <desc id="horizontal-light-desc">
+    KAA Logo mit einer Bildmarke für kontrollierten Datenfluss und
+    Systemverbindungen.
+  </desc>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M8 18h5c5 0 5 5 7 9l1 5" stroke="#FFFFFF" stroke-width="4" />
+    <path d="M8 46h5c5 0 5-5 7-9l1-5" stroke="#FFFFFF" stroke-width="4" />
+    <path d="m32 21 11 11-11 11-11-11Z" stroke="#7EA2FF" stroke-width="4" />
+    <path d="M43 32h13m-5-5 5 5-5 5" stroke="#FFFFFF" stroke-width="4" />
+  </g>
+  <circle cx="8" cy="18" r="3.5" fill="#7EA2FF" />
+  <circle cx="8" cy="46" r="3.5" fill="#7EA2FF" />
+  <circle cx="32" cy="32" r="3" fill="#FFFFFF" />
+  <g fill="#FFFFFF">
+    <path d="M82 13h10v15.25L107 13h13l-18.5 18.5L121 53h-13L92 35.4V53H82Z" />
+    <path
+      fill-rule="evenodd"
+      d="m127 53 16-40h12l16 40h-11l-3.2-9h-15.6L138 53h-11Zm17.1-18h9.8L149 21.2 144.1 35Z"
+      clip-rule="evenodd"
+    />
+    <path
+      fill-rule="evenodd"
+      d="m174 53 16-40h12l16 40h-11l-3.2-9h-15.6L185 53h-11Zm17.1-18h9.8L196 21.2 191.1 35Z"
+      clip-rule="evenodd"
+    />
+  </g>
+  <path d="M236 15v34" stroke="#475467" />
+  <g
+    fill="#D0D5DD"
+    font-family="Inter, Arial, Helvetica, sans-serif"
+    font-size="9.5"
+    font-weight="700"
+    letter-spacing="1.1"
+  >
+    <text x="256" y="29">KI-AUTOMATISIERUNGS-</text>
+    <text x="256" y="43">AGENTUR</text>
+  </g>
+</svg>

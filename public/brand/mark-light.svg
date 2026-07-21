@@ -1,0 +1,22 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 64 64"
+  role="img"
+  aria-labelledby="mark-light-title mark-light-desc"
+  focusable="false"
+>
+  <title id="mark-light-title">KAA Bildmarke</title>
+  <desc id="mark-light-desc">
+    Zwei Datenflüsse laufen in einem kontrollierten Freigabe-Gate zusammen und
+    werden als ein Prozess weitergeführt.
+  </desc>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M8 18h5c5 0 5 5 7 9l1 5" stroke="#FFFFFF" stroke-width="4" />
+    <path d="M8 46h5c5 0 5-5 7-9l1-5" stroke="#FFFFFF" stroke-width="4" />
+    <path d="m32 21 11 11-11 11-11-11Z" stroke="#7EA2FF" stroke-width="4" />
+    <path d="M43 32h13m-5-5 5 5-5 5" stroke="#FFFFFF" stroke-width="4" />
+  </g>
+  <circle cx="8" cy="18" r="3.5" fill="#7EA2FF" />
+  <circle cx="8" cy="46" r="3.5" fill="#7EA2FF" />
+  <circle cx="32" cy="32" r="3" fill="#FFFFFF" />
+</svg>
