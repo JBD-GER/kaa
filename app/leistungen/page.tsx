@@ -10,7 +10,7 @@ import { services } from "@/content/services";
 import { absoluteUrl, createMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createMetadata({
-  title: "Leistungen: individuelle KI-Lösungen und Automatisierung",
+  title: "KI-Lösungen und Prozessautomatisierung",
   description: "KI-Beratung, KI-Assistenten, Prozessautomatisierung, Wissenssysteme, Vertriebsautomatisierung und individuelle KI-Software von KAA.",
   path: "/leistungen",
 });
@@ -42,7 +42,7 @@ export default function ServicesPage() {
           <div className="page-hero__inner">
             <div>
               <p className="eyebrow">Leistungen</p>
-              <h1>Individuelle Lösungen statt vorgefertigter KI-Pakete</h1>
+              <h1>Individuelle KI-Lösungen und Prozessautomatisierung</h1>
             </div>
             <div className="page-hero__aside">
               <p>Jedes Unternehmen arbeitet anders. Deshalb entwickelt KAA keine beliebigen Standardlösungen, sondern analysiert bestehende Abläufe und erstellt darauf abgestimmte KI-Systeme und Automatisierungen.</p>

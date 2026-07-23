@@ -10,8 +10,6 @@ export const companySizeOptions = [
   "1.000 oder mehr Mitarbeitende",
 ] as const;
 
-export const preferredContactOptions = ["E-Mail", "Telefon"] as const;
-
 const requiredShortText = (label: string, maximum = 120) =>
   z
     .string({ error: `${label} ist erforderlich.` })
@@ -55,6 +53,12 @@ const privacyConsentSchema = z
       "Bitte bestätigen Sie, dass Sie die Datenschutzerklärung gelesen haben.",
   });
 
+const termsConsentSchema = z
+  .boolean({ error: "Bitte akzeptieren Sie die AGB." })
+  .refine((accepted) => accepted, {
+    error: "Bitte bestätigen Sie, dass Sie die AGB akzeptieren.",
+  });
+
 const honeypotSchema = z
   .string()
   .max(0, "Die Anfrage konnte nicht verarbeitet werden.");
@@ -64,15 +68,11 @@ export const contactFormSchema = z
     formType: z.literal("contact"),
     firstName: requiredShortText("Vorname"),
     lastName: requiredShortText("Nachname"),
-    company: requiredShortText("Unternehmen", 160),
+    company: requiredShortText("Unternehmensname", 160),
     email: emailSchema,
-    phone: phoneSchema,
     desiredService: desiredServiceSchema,
-    message: requiredShortText("Nachricht", 5_000),
-    preferredContact: z.enum(["", ...preferredContactOptions], {
-      error: "Bitte wählen Sie eine gültige Kontaktart aus.",
-    }),
     privacyAccepted: privacyConsentSchema,
+    termsAccepted: termsConsentSchema,
     website: honeypotSchema,
   })
   .strict();

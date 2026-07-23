@@ -93,7 +93,11 @@ export function UseCaseFilter({
                 <span>Prozessbeispiel</span>
               </div>
 
-              <h2 id={`${useCase.id}-title`}>{useCase.title}</h2>
+              <h2 id={`${useCase.id}-title`}>
+                <Link href={`/anwendungsfaelle/${useCase.id}`}>
+                  {useCase.title}
+                </Link>
+              </h2>
 
               <h3>Ausgangssituation</h3>
               <p>{useCase.situation}</p>

@@ -15,6 +15,7 @@ export type UseCaseCategory = (typeof useCaseCategories)[number]["id"];
 export type UseCase = {
   id: string;
   title: string;
+  seoTitle: string;
   category: Exclude<UseCaseCategory, "alle">;
   situation: string;
   automatedFlow: string;
@@ -29,6 +30,7 @@ export const useCases: readonly UseCase[] = [
   {
     id: "anfragen-qualifizieren",
     title: "Kundenanfragen automatisch qualifizieren",
+    seoTitle: "Kundenanfragen mit KI automatisch qualifizieren",
     category: "vertrieb",
     situation:
       "Anfragen treffen über Website, E-Mail oder Telefon ein und enthalten häufig noch nicht alle Angaben für die weitere Bearbeitung.",
@@ -43,6 +45,7 @@ export const useCases: readonly UseCase[] = [
   {
     id: "emails-zuordnen",
     title: "Eingehende E-Mails erkennen und zuordnen",
+    seoTitle: "E-Mails mit KI erkennen und automatisch zuordnen",
     category: "verwaltung",
     situation:
       "Ein zentrales Postfach enthält Angebote, Supportfragen, Belege und allgemeine Nachrichten, die einzeln geprüft werden.",
@@ -57,6 +60,7 @@ export const useCases: readonly UseCase[] = [
   {
     id: "dokumente-auslesen",
     title: "Daten aus Rechnungen und Dokumenten auslesen",
+    seoTitle: "Dokumente mit KI auslesen und Daten prüfen",
     category: "dokumente",
     situation:
       "Angaben aus Rechnungen, Formularen oder Auftragsdokumenten werden manuell in andere Systeme übertragen.",
@@ -71,6 +75,7 @@ export const useCases: readonly UseCase[] = [
   {
     id: "fehlende-daten",
     title: "Fehlende Kundendaten gezielt abfragen",
+    seoTitle: "Fehlende Kundendaten automatisch abfragen",
     category: "kundenservice",
     situation:
       "Eine Bearbeitung stockt, weil Pflichtangaben, Unterlagen oder eine eindeutige Auswahl fehlen.",
@@ -84,6 +89,7 @@ export const useCases: readonly UseCase[] = [
   {
     id: "antwortentwuerfe",
     title: "Antwortentwürfe für wiederkehrende Anliegen vorbereiten",
+    seoTitle: "KI-Antwortentwürfe für Kundenanfragen erstellen",
     category: "kundenservice",
     situation:
       "Mitarbeiter formulieren ähnliche Antworten immer wieder neu und suchen dafür Informationen in verschiedenen Quellen.",
@@ -98,6 +104,7 @@ export const useCases: readonly UseCase[] = [
   {
     id: "termine-koordinieren",
     title: "Termine koordinieren",
+    seoTitle: "Terminkoordination mit KI automatisieren",
     category: "kundenservice",
     situation:
       "Mehrere Nachrichten sind nötig, bis Zweck, Teilnehmer und ein passender Termin geklärt sind.",
@@ -111,6 +118,7 @@ export const useCases: readonly UseCase[] = [
   {
     id: "crm-aktualisieren",
     title: "CRM-Daten automatisch aktualisieren",
+    seoTitle: "CRM-Daten mit KI automatisch aktualisieren",
     category: "vertrieb",
     situation:
       "Kontaktdaten, Gesprächsstände und nächste Schritte werden verspätet oder unvollständig im CRM gepflegt.",
@@ -124,6 +132,7 @@ export const useCases: readonly UseCase[] = [
   {
     id: "aufgaben-verteilen",
     title: "Aufgaben an zuständige Mitarbeiter verteilen",
+    seoTitle: "Aufgaben mit KI automatisch verteilen",
     category: "verwaltung",
     situation:
       "Neue Vorgänge werden manuell gelesen, bewertet und anhand von Fachgebiet oder Verfügbarkeit weitergeleitet.",
@@ -137,6 +146,7 @@ export const useCases: readonly UseCase[] = [
   {
     id: "gespraechsnotizen",
     title: "Gesprächsnotizen zusammenfassen",
+    seoTitle: "Gesprächsnotizen mit KI zusammenfassen",
     category: "vertrieb",
     situation:
       "Nach Gesprächen müssen Kernaussagen, Vereinbarungen und nächste Schritte manuell dokumentiert werden.",
@@ -150,6 +160,7 @@ export const useCases: readonly UseCase[] = [
   {
     id: "berichte",
     title: "Wiederkehrende Berichte vorbereiten",
+    seoTitle: "Berichte mit KI automatisch vorbereiten",
     category: "management",
     situation:
       "Kennzahlen und Statusinformationen werden regelmäßig aus mehreren Quellen zusammengetragen und formatiert.",
@@ -163,6 +174,7 @@ export const useCases: readonly UseCase[] = [
   {
     id: "wissen-durchsuchen",
     title: "Interne Dokumente gezielt durchsuchen",
+    seoTitle: "Interne Dokumente mit KI durchsuchen",
     category: "internes-wissen",
     situation:
       "Richtlinien, Handbücher und Projektunterlagen liegen verteilt; die gültige Antwort ist schwer auffindbar.",
@@ -177,6 +189,7 @@ export const useCases: readonly UseCase[] = [
   {
     id: "onboarding",
     title: "Neue Mitarbeiter beim Onboarding unterstützen",
+    seoTitle: "KI-Assistent für das Mitarbeiter-Onboarding",
     category: "personal",
     situation:
       "Neue Mitarbeiter stellen ähnliche Fragen und müssen sich durch viele verstreute Unterlagen arbeiten.",
@@ -190,6 +203,7 @@ export const useCases: readonly UseCase[] = [
   {
     id: "nachfassen",
     title: "Kunden kontrolliert nachfassen",
+    seoTitle: "Kunden mit KI kontrolliert nachfassen",
     category: "vertrieb",
     situation:
       "Vereinbarte Rückmeldungen und nächste Schritte werden im Tagesgeschäft übersehen.",
@@ -204,6 +218,7 @@ export const useCases: readonly UseCase[] = [
   {
     id: "kanaele-zusammenfuehren",
     title: "Anfragen aus Website, Telefon und E-Mail zusammenführen",
+    seoTitle: "Kundenanfragen aus mehreren Kanälen bündeln",
     category: "kundenservice",
     situation:
       "Kundenkontakte liegen getrennt in Postfächern, Formularen und Telefonnotizen vor.",
@@ -217,6 +232,7 @@ export const useCases: readonly UseCase[] = [
   {
     id: "freigaben",
     title: "Freigabeprozesse digital abbilden",
+    seoTitle: "Freigabeprozesse digital automatisieren",
     category: "verwaltung",
     situation:
       "Freigaben laufen über E-Mail, Rückfragen verteilen sich und der aktuelle Status bleibt unklar.",
@@ -230,6 +246,7 @@ export const useCases: readonly UseCase[] = [
   {
     id: "content-recycling",
     title: "Freigegebene Inhalte für mehrere Kanäle aufbereiten",
+    seoTitle: "Content mit KI für mehrere Kanäle aufbereiten",
     category: "marketing",
     situation:
       "Ein fachlicher Ausgangstext muss wiederholt für Newsletter, Website oder interne Kommunikation angepasst werden.",
@@ -241,3 +258,7 @@ export const useCases: readonly UseCase[] = [
     cta: "Content-Ablauf besprechen",
   },
 ] as const;
+
+export function getUseCase(slug: string) {
+  return useCases.find((useCase) => useCase.id === slug);
+}

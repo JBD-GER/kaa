@@ -1,11 +1,14 @@
 import type { NextConfig } from "next";
 
+const canonicalUrl = (
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  "https://ki-automatisierungs-agentur.de"
+).replace(/\/$/, "");
+const canonicalHost = new URL(canonicalUrl).host;
+
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
-  experimental: {
-    optimizePackageImports: ["motion"],
-  },
   async headers() {
     return [
       {
@@ -15,6 +18,10 @@ const nextConfig: NextConfig = {
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
           { key: "X-Frame-Options", value: "SAMEORIGIN" },
           {
+            key: "Strict-Transport-Security",
+            value: "max-age=31536000; includeSubDomains",
+          },
+          {
             key: "Permissions-Policy",
             value: "camera=(), microphone=(), geolocation=()",
           },
@@ -23,7 +30,26 @@ const nextConfig: NextConfig = {
     ];
   },
   async redirects() {
-    return [];
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: `www.${canonicalHost}` }],
+        destination: `${canonicalUrl}/:path*`,
+        permanent: true,
+      },
+      {
+        source: "/:path*",
+        has: [
+          {
+            type: "header",
+            key: "x-forwarded-proto",
+            value: "http",
+          },
+        ],
+        destination: `${canonicalUrl}/:path*`,
+        permanent: true,
+      },
+    ];
   },
 };
 

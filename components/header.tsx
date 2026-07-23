@@ -9,19 +9,12 @@ import { primaryNavigation } from "@/config/site";
 
 export function Header() {
   const pathname = usePathname();
-  const [compact, setCompact] = useState(false);
   const [megaOpen, setMegaOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const mobileDialogRef = useRef<HTMLDivElement>(null);
   const mobileTriggerRef = useRef<HTMLButtonElement>(null);
   const megaRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const onScroll = () => setCompact(window.scrollY > 28);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const megaTriggerRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     if (!mobileOpen) return;
@@ -55,9 +48,16 @@ export function Header() {
     };
 
     document.addEventListener("keydown", onKeyDown);
+    const onResize = () => {
+      if (window.matchMedia("(min-width: 68.01rem)").matches) {
+        setMobileOpen(false);
+      }
+    };
+    window.addEventListener("resize", onResize);
     return () => {
       document.body.style.overflow = previousOverflow;
       document.removeEventListener("keydown", onKeyDown);
+      window.removeEventListener("resize", onResize);
     };
   }, [mobileOpen]);
 
@@ -67,7 +67,10 @@ export function Header() {
       if (!megaRef.current?.contains(event.target as Node)) setMegaOpen(false);
     };
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setMegaOpen(false);
+      if (event.key === "Escape") {
+        setMegaOpen(false);
+        megaTriggerRef.current?.focus();
+      }
     };
     document.addEventListener("pointerdown", onPointerDown);
     document.addEventListener("keydown", onKeyDown);
@@ -81,24 +84,45 @@ export function Header() {
     href === "/" ? pathname === href : pathname.startsWith(href);
 
   return (
-    <header className={`site-header${compact ? " site-header--compact" : ""}`}>
+    <header
+      className={`site-header${mobileOpen ? " site-header--nav-open" : ""}`}
+    >
       <div className="container site-header__inner">
-        <Link href="/" className="site-header__logo" aria-label="KAA Startseite">
-            <Logo variant="dark" size="compact" />
+        <Link
+          href="/"
+          className="site-header__logo"
+          aria-label="KAA – KI-Automatisierungs-Agentur, Startseite"
+        >
+            <Logo variant="dark" size="compact" decorative />
         </Link>
 
         <nav className="desktop-nav" aria-label="Hauptnavigation">
           {primaryNavigation.map((item) =>
             "megaMenu" in item && item.megaMenu ? (
               <div className="desktop-nav__mega" ref={megaRef} key={item.href}>
+                <Link
+                  href={item.href}
+                  className={isActive(item.href) ? "is-active" : ""}
+                  aria-current={pathname === item.href ? "page" : undefined}
+                  onClick={() => setMegaOpen(false)}
+                >
+                  {item.label}
+                </Link>
                 <button
+                  ref={megaTriggerRef}
                   type="button"
                   className={isActive(item.href) ? "is-active" : ""}
                   aria-expanded={megaOpen}
+                  aria-haspopup="true"
                   aria-controls="services-mega-menu"
+                  aria-label={
+                    megaOpen
+                      ? "Leistungsmenü schließen"
+                      : "Leistungsmenü öffnen"
+                  }
                   onClick={() => setMegaOpen((open) => !open)}
                 >
-                  {item.label}<span aria-hidden="true">⌄</span>
+                  <span aria-hidden="true">⌄</span>
                 </button>
                 {megaOpen ? (
                   <div className="mega-menu" id="services-mega-menu">
@@ -133,7 +157,11 @@ export function Header() {
           )}
         </nav>
 
-        <Link href="/ki-potenzialanalyse" className="header-cta">
+        <Link
+          href="/ki-potenzialanalyse"
+          className="header-cta"
+          prefetch={false}
+        >
           KI-Potenzial prüfen <span aria-hidden="true">↗</span>
         </Link>
 
@@ -157,23 +185,59 @@ export function Header() {
           aria-modal="true"
           aria-label="Mobile Navigation"
           id="mobile-navigation"
+          onPointerDown={(event) => {
+            if (event.target === event.currentTarget) {
+              setMobileOpen(false);
+              mobileTriggerRef.current?.focus();
+            }
+          }}
         >
           <div className="mobile-nav" ref={mobileDialogRef}>
             <div className="mobile-nav__top">
-              <Logo variant="light" size="compact" />
+              <Link
+                href="/"
+                aria-label="KAA – KI-Automatisierungs-Agentur, Startseite"
+                onClick={() => setMobileOpen(false)}
+              >
+                <Logo variant="light" size="compact" decorative />
+              </Link>
               <button type="button" onClick={() => { setMobileOpen(false); mobileTriggerRef.current?.focus(); }}>
                 Schließen <span aria-hidden="true">×</span>
               </button>
             </div>
             <nav aria-label="Mobile Hauptnavigation">
-              <Link href="/leistungen" onClick={() => setMobileOpen(false)}>Leistungen</Link>
+              <Link
+                href="/leistungen"
+                aria-current={pathname === "/leistungen" ? "page" : undefined}
+                onClick={() => setMobileOpen(false)}
+              >
+                Leistungen
+              </Link>
               <div className="mobile-nav__services">
                 {services.map((service) => (
-                  <Link href={`/leistungen/${service.slug}`} key={service.slug} onClick={() => setMobileOpen(false)}>{service.name}</Link>
+                  <Link
+                    href={`/leistungen/${service.slug}`}
+                    key={service.slug}
+                    aria-current={
+                      pathname === `/leistungen/${service.slug}`
+                        ? "page"
+                        : undefined
+                    }
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {service.name}
+                  </Link>
                 ))}
               </div>
               {primaryNavigation.slice(1).map((item) => (
-                <Link href={item.href} key={item.href} onClick={() => setMobileOpen(false)}>{item.label}</Link>
+                <Link
+                  href={item.href}
+                  key={item.href}
+                  aria-current={pathname === item.href ? "page" : undefined}
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {item.label}
+                </Link>
               ))}
             </nav>
             <Link className="mobile-nav__cta" href="/ki-potenzialanalyse" onClick={() => setMobileOpen(false)}>KI-Potenzial prüfen <span aria-hidden="true">↗</span></Link>

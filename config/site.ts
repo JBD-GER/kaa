@@ -10,9 +10,13 @@ export const company = {
   street: "Großer Kamp 5a",
   postalCode: "31633",
   city: "Leese",
+  state: "Niedersachsen",
   country: "Deutschland",
   countryCode: "DE",
   phone: process.env.NEXT_PUBLIC_CONTACT_PHONE || "05761 8429666",
+  phoneInternational:
+    process.env.NEXT_PUBLIC_CONTACT_PHONE_INTERNATIONAL ||
+    "+49 5761 8429666",
   email:
     process.env.NEXT_PUBLIC_CONTACT_EMAIL ||
     "kontakt@ki-automatisierungs-agentur.de",
@@ -42,7 +46,7 @@ export const siteConfig = {
     "KAA entwickelt individuelle KI-Lösungen, automatisiert wiederkehrende Aufgaben und verbindet bestehende Systeme zu intelligenten Unternehmensprozessen.",
   consentVersion: "1.0",
   author: "KAA Redaktion",
-  themeColor: "#07111f",
+  themeColor: "#071018",
 } as const;
 
 export const primaryNavigation = [

@@ -4,16 +4,38 @@ import { ContactForm } from "@/components/forms/contact-form";
 import { JsonLd } from "@/components/json-ld";
 import { Container } from "@/components/ui/container";
 import { company } from "@/config/site";
+import { getIndustry } from "@/content/industries";
+import { getService } from "@/content/services";
+import { getUseCase } from "@/content/use-cases";
 import { absoluteUrl, createMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createMetadata({
-  title: "Kontakt: Sprechen wir über Ihren Prozess",
+  title: "Kontakt: unverbindliche KI-Anfrage senden",
   description:
-    "Beschreiben Sie den manuellen Ablauf oder die individuelle KI-Lösung, die Sie mit KAA besprechen möchten.",
+    "Senden Sie KAA Ihre Kontaktdaten und wählen Sie die gewünschte KI-Leistung für ein unverbindliches Erstgespräch aus.",
   path: "/kontakt",
 });
 
-export default function ContactPage() {
+type Props = {
+  searchParams: Promise<{
+    leistung?: string;
+    anwendungsfall?: string;
+    branche?: string;
+  }>;
+};
+
+export default async function ContactPage({ searchParams }: Props) {
+  const { leistung, anwendungsfall, branche } = await searchParams;
+  const selectedUseCase = anwendungsfall
+    ? getUseCase(anwendungsfall)
+    : undefined;
+  const selectedIndustry = branche ? getIndustry(branche) : undefined;
+  const selectedService =
+    (leistung ? getService(leistung) : undefined) ??
+    (selectedUseCase ? getService(selectedUseCase.serviceSlug) : undefined) ??
+    (selectedIndustry
+      ? getService(selectedIndustry.serviceSlugs[0])
+      : undefined);
   const items = [
     { label: "Startseite", href: "/" },
     { label: "Kontakt", href: "/kontakt" },
@@ -41,16 +63,16 @@ export default function ContactPage() {
           <div className="page-hero__inner">
             <div>
               <p className="eyebrow">Kontakt</p>
-              <h1>Sprechen wir über Ihren Prozess</h1>
+              <h1>Unverbindliche Anfrage senden</h1>
               <p className="lead">
-                Beschreiben Sie kurz, welche Aufgabe heute noch manuell erledigt
-                wird oder welche Lösung Sie entwickeln möchten.
+                Ihre Kontaktdaten und die gewünschte Leistung genügen für den
+                ersten Schritt.
               </p>
             </div>
             <div className="page-hero__aside">
               <p>
-                Sie müssen noch kein technisches Konzept haben. Ein konkretes
-                Beispiel aus dem Arbeitsalltag ist der beste Ausgangspunkt.
+                Im Erstgespräch klären wir gemeinsam, welcher Prozess,
+                welche Systeme und welches Ziel für Sie relevant sind.
               </p>
             </div>
           </div>
@@ -59,7 +81,7 @@ export default function ContactPage() {
       <section className="section section--white">
         <Container className="form-layout">
           <div className="form-card">
-            <ContactForm />
+            <ContactForm initialService={selectedService?.name} />
           </div>
           <aside className="form-aside">
             <p className="eyebrow">Wie es weitergeht</p>
@@ -71,7 +93,7 @@ export default function ContactPage() {
                 <span>
                   <strong>Anfrage senden</strong>
                   <br />
-                  Sie beschreiben Aufgabe, Kontext und gewünschte Leistung.
+                  Sie tragen Ihre Kontaktdaten ein und wählen eine Leistung.
                 </span>
               </li>
               <li>
@@ -99,40 +121,42 @@ export default function ContactPage() {
             </ol>
             <div className="contact-channels">
               <h3>Direkter Kontakt</h3>
-              <div>
-                <span>E-Mail</span>
-                {company.email ? (
-                  <a href={`mailto:${company.email}`}>{company.email}</a>
-                ) : (
-                  <em>Wird vor Veröffentlichung zentral ergänzt</em>
-                )}
-              </div>
-              <div>
-                <span>Telefon</span>
-                {company.phone ? (
-                  <a href={`tel:${company.phone.replace(/\s/g, "")}`}>
-                    {company.phone}
-                  </a>
-                ) : (
-                  <em>Wird vor Veröffentlichung zentral ergänzt</em>
-                )}
-              </div>
-              <div>
-                <span>Anschrift</span>
-                {address ? (
-                  <strong>{address}</strong>
-                ) : (
-                  <em>Wird vor Veröffentlichung zentral ergänzt</em>
-                )}
-              </div>
-              {company.bookingUrl ? (
+              <address>
                 <div>
-                  <span>Terminbuchung</span>
-                  <a href={company.bookingUrl} rel="noreferrer">
-                    Termin auswählen
-                  </a>
+                  <span>E-Mail</span>
+                  {company.email ? (
+                    <a href={`mailto:${company.email}`}>{company.email}</a>
+                  ) : (
+                    <em>Wird vor Veröffentlichung zentral ergänzt</em>
+                  )}
                 </div>
-              ) : null}
+                <div>
+                  <span>Telefon</span>
+                  {company.phone ? (
+                    <a href={`tel:${company.phone.replace(/\s/g, "")}`}>
+                      {company.phone}
+                    </a>
+                  ) : (
+                    <em>Wird vor Veröffentlichung zentral ergänzt</em>
+                  )}
+                </div>
+                <div>
+                  <span>Anschrift</span>
+                  {address ? (
+                    <strong>{address}</strong>
+                  ) : (
+                    <em>Wird vor Veröffentlichung zentral ergänzt</em>
+                  )}
+                </div>
+                {company.bookingUrl ? (
+                  <div>
+                    <span>Terminbuchung</span>
+                    <a href={company.bookingUrl} rel="noreferrer">
+                      Termin auswählen
+                    </a>
+                  </div>
+                ) : null}
+              </address>
             </div>
             <p style={{ color: "var(--muted)", fontSize: ".76rem" }}>
               Eine konkrete Antwortzeit wird nicht pauschal versprochen. Jede

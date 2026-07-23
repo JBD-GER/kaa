@@ -16,6 +16,9 @@ const dateFormatter = new Intl.DateTimeFormat("de-DE", { day: "2-digit", month: 
 
 export default function GuidesPage() {
   const items = [{ label: "Startseite", href: "/" }, { label: "Ratgeber", href: "/ratgeber" }];
+  const populatedCategories = articleCategories.filter((category) =>
+    articles.some((article) => article.category === category),
+  );
   return (
     <>
       <section className="page-hero page-hero--dark">
@@ -24,7 +27,7 @@ export default function GuidesPage() {
       <section className="section section--tight section--white">
         <Container>
           <p className="eyebrow">Themen</p>
-          <ul className="category-list">{articleCategories.map((category) => <li key={category}>{category}</li>)}</ul>
+          <ul className="category-list">{populatedCategories.map((category) => <li key={category}>{category}</li>)}</ul>
         </Container>
       </section>
       <section className="section">

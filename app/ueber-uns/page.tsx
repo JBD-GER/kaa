@@ -116,7 +116,7 @@ export default function AboutPage() {
           <div className="about-grid">
             {competency.map((item) => (
               <article key={item.title}>
-                <h2>{item.title}</h2>
+                <h3>{item.title}</h3>
                 <p>{item.text}</p>
               </article>
             ))}

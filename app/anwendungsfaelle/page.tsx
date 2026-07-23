@@ -48,7 +48,7 @@ const pageJsonLd = {
       "@type": "ListItem",
       position: index + 1,
       name: useCase.title,
-      url: `${pageUrl}#${useCase.id}`,
+      url: absoluteUrl(`/anwendungsfaelle/${useCase.id}`),
     })),
   },
 };

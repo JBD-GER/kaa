@@ -10,8 +10,11 @@ export function Footer() {
       <div className="container">
         <div className="site-footer__top">
           <div className="site-footer__brand">
-            <Link href="/" aria-label="KAA Startseite">
-              <Logo variant="light" size="horizontal" />
+            <Link
+              href="/"
+              aria-label="KAA – KI-Automatisierungs-Agentur, Startseite"
+            >
+              <Logo variant="light" size="horizontal" decorative />
             </Link>
             <p>
               KAA entwickelt individuelle KI-Lösungen, automatisiert

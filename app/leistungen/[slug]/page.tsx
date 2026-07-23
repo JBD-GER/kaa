@@ -23,9 +23,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const service = getService(slug);
   if (!service) return {};
   return createMetadata({
-    title: `${service.name}: ${service.h1}`,
-    description: `${service.shortDescription} Erfahren Sie, wie KAA ${service.name} individuell in bestehende Unternehmensabläufe integriert.`,
+    title: service.seoTitle,
+    description: service.seoDescription,
     path: `/leistungen/${service.slug}`,
+    imagePath: `/leistungen/${service.slug}/opengraph-image`,
+    imageAlt: `${service.name} – KAA KI-Automatisierungs-Agentur`,
   });
 }
 
@@ -33,6 +35,11 @@ export default async function ServiceDetailPage({ params }: Props) {
   const { slug } = await params;
   const service = getService(slug);
   if (!service) notFound();
+  const serviceIndex = services.findIndex((item) => item.slug === service.slug);
+  const relatedServices = [
+    ...services.slice(serviceIndex + 1),
+    ...services.slice(0, serviceIndex),
+  ].slice(0, 3);
 
   const breadcrumbItems = [
     { label: "Startseite", href: "/" },
@@ -43,7 +50,7 @@ export default async function ServiceDetailPage({ params }: Props) {
   const serviceJsonLd = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "@id": `${absoluteUrl(`/leistungen/${service.slug}`)}/#service`,
+    "@id": `${absoluteUrl(`/leistungen/${service.slug}`)}#service`,
     name: service.name,
     description: service.shortDescription,
     serviceType: service.name,
@@ -124,7 +131,7 @@ export default async function ServiceDetailPage({ params }: Props) {
         <Container>
           <SectionHeader eyebrow="Weitere Leistungen" title="Der Prozess kann mehrere Bausteine verbinden" />
           <div className="related-services">
-            {services.filter((item) => item.slug !== service.slug).slice(0, 3).map((item) => (
+            {relatedServices.map((item) => (
               <article key={item.slug}><ServiceIcon name={item.icon} /><h3>{item.name}</h3><p>{item.shortDescription}</p><ButtonLink href={`/leistungen/${item.slug}`} variant="secondary">Details ansehen</ButtonLink></article>
             ))}
           </div>

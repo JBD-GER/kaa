@@ -7,8 +7,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: "Individuelle KI-Lösungen und Prozessautomatisierung für Unternehmen.",
     start_url: "/",
     display: "standalone",
-    background_color: "#f7f8fa",
-    theme_color: "#0b0f17",
+    background_color: "#f3f1e9",
+    theme_color: "#071018",
     lang: "de-DE",
     icons: [
       { src: "/icon.svg", sizes: "any", type: "image/svg+xml", purpose: "any" },

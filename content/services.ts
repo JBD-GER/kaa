@@ -9,6 +9,8 @@ export type ServiceIcon =
 export type Service = {
   slug: string;
   name: string;
+  seoTitle: string;
+  seoDescription: string;
   shortDescription: string;
   h1: string;
   eyebrow: string;
@@ -29,6 +31,9 @@ export const services: readonly Service[] = [
   {
     slug: "ki-beratung",
     name: "KI-Beratung",
+    seoTitle: "KI-Beratung für Unternehmensprozesse",
+    seoDescription:
+      "KAA analysiert Abläufe, Systeme und Automatisierungspotenziale und entwickelt eine belastbare KI-Roadmap für Ihr Unternehmen.",
     shortDescription:
       "Wir analysieren Ihre Abläufe und zeigen, wo KI Zeit und Kosten spart.",
     h1: "KI-Beratung für konkrete Unternehmensprozesse",
@@ -78,6 +83,9 @@ export const services: readonly Service[] = [
   {
     slug: "ki-assistenten",
     name: "KI-Assistenten",
+    seoTitle: "KI-Assistenten für Kunden und Mitarbeiter",
+    seoDescription:
+      "Individuelle KI-Assistenten für Kundenservice, Telefon, Website und interne Aufgaben – integriert, kontrollierbar und verständlich.",
     shortDescription:
       "Digitale Mitarbeiter für Kundenservice, Telefon, Website und interne Aufgaben.",
     h1: "KI-Assistenten für Kunden, Mitarbeiter und interne Aufgaben",
@@ -117,6 +125,9 @@ export const services: readonly Service[] = [
   {
     slug: "prozessautomatisierung",
     name: "Prozessautomatisierung",
+    seoTitle: "Prozessautomatisierung mit KI",
+    seoDescription:
+      "KAA automatisiert E-Mails, Dokumente, Dateneingaben und Büroprozesse und verbindet die dafür benötigten Unternehmenssysteme.",
     shortDescription:
       "E-Mails, Dokumente, Dateneingaben und wiederkehrende Büroarbeit automatisch erledigen.",
     h1: "Wiederkehrende Aufgaben automatisch erledigen",
@@ -164,6 +175,9 @@ export const services: readonly Service[] = [
   {
     slug: "wissenssysteme",
     name: "Wissenssysteme",
+    seoTitle: "KI-Wissenssysteme für Unternehmen",
+    seoDescription:
+      "Interne KI-Wissenssysteme erschließen Dokumente und Unternehmenswissen mit nachvollziehbaren Quellen und passenden Zugriffsrechten.",
     shortDescription:
       "Eine interne KI, die Ihre Dokumente kennt und Mitarbeiterfragen zuverlässig beantwortet.",
     h1: "Unternehmenswissen schnell und zuverlässig verfügbar machen",
@@ -203,6 +217,9 @@ export const services: readonly Service[] = [
   {
     slug: "vertriebsautomatisierung",
     name: "Vertriebsautomatisierung",
+    seoTitle: "Vertriebsautomatisierung mit KI",
+    seoDescription:
+      "KAA automatisiert Anfrageerfassung, Lead-Qualifizierung, CRM-Pflege, Terminbuchung und kontrollierte Nachfassprozesse.",
     shortDescription:
       "Anfragen erfassen, Kunden qualifizieren, Termine buchen und automatisch nachfassen.",
     h1: "Vertriebsprozesse vom Erstkontakt bis zum Nachfassen automatisieren",
@@ -242,6 +259,9 @@ export const services: readonly Service[] = [
   {
     slug: "individuelle-ki-software",
     name: "Individuelle KI-Software",
+    seoTitle: "Individuelle KI-Software für Unternehmen",
+    seoDescription:
+      "Maßgeschneiderte KI-Anwendungen, Portale und Integrationen für besondere Prozesse – von Architektur und UX bis Betrieb und Wartung.",
     shortDescription:
       "Maßgeschneiderte KI-Anwendungen und Integrationen für besondere Anforderungen.",
     h1: "Individuelle KI-Software für besondere Anforderungen",

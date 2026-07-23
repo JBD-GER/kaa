@@ -76,9 +76,8 @@ function submissionRows(submission: FormSubmission): EmailRow[] {
   const commonRows: EmailRow[] = [
     ["Vorname", submission.firstName],
     ["Nachname", submission.lastName],
-    ["Unternehmen", submission.company],
+    ["Unternehmensname", submission.company],
     ["E-Mail-Adresse", submission.email],
-    ["Telefonnummer", displayValue(submission.phone)],
     ["Gewünschte Leistung", submission.desiredService],
   ];
 
@@ -86,14 +85,18 @@ function submissionRows(submission: FormSubmission): EmailRow[] {
     return [
       ["Formular", "Kontaktanfrage"],
       ...commonRows,
-      ["Nachricht", submission.message],
-      ["Bevorzugte Kontaktart", displayValue(submission.preferredContact)],
+      [
+        "Datenschutzerklärung",
+        submission.privacyAccepted ? "Bestätigt" : "Nicht bestätigt",
+      ],
+      ["AGB", submission.termsAccepted ? "Akzeptiert" : "Nicht akzeptiert"],
     ];
   }
 
   return [
     ["Formular", "KI-Potenzialanalyse"],
     ...commonRows,
+    ["Telefonnummer", displayValue(submission.phone)],
     ["Branche", submission.industry],
     ["Unternehmensgröße", submission.companySize],
     ["Beschreibung des Ablaufs", submission.processDescription],

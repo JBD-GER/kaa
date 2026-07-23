@@ -1,11 +1,12 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import "./redesign.css";
 import { ConsentProvider } from "@/components/consent/consent-provider";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { JsonLd } from "@/components/json-ld";
 import { SITE_URL, siteConfig } from "@/config/site";
-import { organizationJsonLd, professionalServiceJsonLd, websiteJsonLd } from "@/lib/seo";
+import { siteGraphJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -30,15 +31,15 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f7f8fa" },
-    { media: "(prefers-color-scheme: dark)", color: "#07111f" },
+    { media: "(prefers-color-scheme: light)", color: "#f3f1e9" },
+    { media: "(prefers-color-scheme: dark)", color: "#071018" },
   ],
   colorScheme: "light",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="de">
+    <html lang="de-DE">
       <body>
         <a href="#main-content" className="skip-link">Zum Hauptinhalt springen</a>
         <ConsentProvider>
@@ -46,7 +47,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <main id="main-content" tabIndex={-1}>{children}</main>
           <Footer />
         </ConsentProvider>
-        <JsonLd data={[organizationJsonLd, professionalServiceJsonLd, websiteJsonLd]} />
+        <JsonLd data={siteGraphJsonLd} />
       </body>
     </html>
   );

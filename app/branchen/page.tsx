@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { CtaSection } from "@/components/cta-section";
 import { JsonLd } from "@/components/json-ld";
@@ -36,6 +37,7 @@ const pageJsonLd = {
       "@type": "ListItem",
       position: index + 1,
       name: industry.name,
+      url: absoluteUrl(`/branchen/${industry.slug}`),
     })),
   },
 };
@@ -96,6 +98,14 @@ export default function IndustriesPage() {
                     <li key={example}>{example}</li>
                   ))}
                 </ul>
+                <div className="use-case-card__footer">
+                  <Link
+                    href={`/branchen/${industry.slug}`}
+                    aria-label={`KI-Automatisierung für ${industry.name} ansehen`}
+                  >
+                    Branche ansehen <span aria-hidden="true">↗</span>
+                  </Link>
+                </div>
               </article>
             ))}
           </div>

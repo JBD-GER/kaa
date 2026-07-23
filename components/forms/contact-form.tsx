@@ -14,7 +14,6 @@ import { serviceOptions } from "@/content/services";
 import {
   contactFormSchema,
   type ContactFormValues,
-  preferredContactOptions,
 } from "@/lib/validation";
 
 type SubmissionStatus =
@@ -34,11 +33,9 @@ const defaultValues: ContactFormValues = {
   lastName: "",
   company: "",
   email: "",
-  phone: "",
   desiredService: "",
-  message: "",
-  preferredContact: "",
   privacyAccepted: false,
+  termsAccepted: false,
   website: "",
 };
 
@@ -60,7 +57,11 @@ function FieldError({
   );
 }
 
-export function ContactForm() {
+export function ContactForm({
+  initialService = "",
+}: {
+  initialService?: string;
+}) {
   const router = useRouter();
   const formId = useId();
   const [submissionStatus, setSubmissionStatus] = useState<SubmissionStatus>({
@@ -73,7 +74,10 @@ export function ContactForm() {
     formState: { errors, isSubmitting },
   } = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
-    defaultValues,
+    defaultValues: {
+      ...defaultValues,
+      desiredService: initialService,
+    },
     mode: "onBlur",
     shouldFocusError: true,
   });
@@ -143,6 +147,25 @@ export function ContactForm() {
     >
       <input type="hidden" {...register("formType")} />
 
+      <div className="form-field">
+        <label className="form-field__label" htmlFor={fieldId("email")}>
+          E-Mail-Adresse <span aria-hidden="true">*</span>
+        </label>
+        <input
+          className="form-field__control"
+          id={fieldId("email")}
+          type="email"
+          inputMode="email"
+          autoComplete="email"
+          spellCheck="false"
+          aria-required="true"
+          aria-invalid={Boolean(errors.email)}
+          aria-describedby={errors.email ? fieldId("email-error") : undefined}
+          {...register("email")}
+        />
+        <FieldError error={errors.email} id={fieldId("email-error")} />
+      </div>
+
       <div className="form-grid form-grid--two-columns">
         <div className="form-field">
           <label className="form-field__label" htmlFor={fieldId("first-name")}>
@@ -188,7 +211,7 @@ export function ContactForm() {
 
       <div className="form-field">
         <label className="form-field__label" htmlFor={fieldId("company")}>
-          Unternehmen <span aria-hidden="true">*</span>
+          Unternehmensname <span aria-hidden="true">*</span>
         </label>
         <input
           className="form-field__control"
@@ -203,44 +226,6 @@ export function ContactForm() {
           {...register("company")}
         />
         <FieldError error={errors.company} id={fieldId("company-error")} />
-      </div>
-
-      <div className="form-grid form-grid--two-columns">
-        <div className="form-field">
-          <label className="form-field__label" htmlFor={fieldId("email")}>
-            E-Mail-Adresse <span aria-hidden="true">*</span>
-          </label>
-          <input
-            className="form-field__control"
-            id={fieldId("email")}
-            type="email"
-            inputMode="email"
-            autoComplete="email"
-            spellCheck="false"
-            aria-required="true"
-            aria-invalid={Boolean(errors.email)}
-            aria-describedby={errors.email ? fieldId("email-error") : undefined}
-            {...register("email")}
-          />
-          <FieldError error={errors.email} id={fieldId("email-error")} />
-        </div>
-
-        <div className="form-field">
-          <label className="form-field__label" htmlFor={fieldId("phone")}>
-            Telefonnummer <span className="form-field__optional">optional</span>
-          </label>
-          <input
-            className="form-field__control"
-            id={fieldId("phone")}
-            type="tel"
-            inputMode="tel"
-            autoComplete="tel"
-            aria-invalid={Boolean(errors.phone)}
-            aria-describedby={errors.phone ? fieldId("phone-error") : undefined}
-            {...register("phone")}
-          />
-          <FieldError error={errors.phone} id={fieldId("phone-error")} />
-        </div>
       </div>
 
       <div className="form-field">
@@ -271,57 +256,6 @@ export function ContactForm() {
         />
       </div>
 
-      <div className="form-field">
-        <label className="form-field__label" htmlFor={fieldId("message")}>
-          Nachricht <span aria-hidden="true">*</span>
-        </label>
-        <textarea
-          className="form-field__control form-field__textarea"
-          id={fieldId("message")}
-          rows={7}
-          aria-required="true"
-          aria-invalid={Boolean(errors.message)}
-          aria-describedby={
-            errors.message ? fieldId("message-error") : undefined
-          }
-          {...register("message")}
-        />
-        <FieldError error={errors.message} id={fieldId("message-error")} />
-      </div>
-
-      <div className="form-field">
-        <label
-          className="form-field__label"
-          htmlFor={fieldId("preferred-contact")}
-        >
-          Bevorzugte Kontaktart{" "}
-          <span className="form-field__optional">optional</span>
-        </label>
-        <select
-          className="form-field__control form-field__select"
-          id={fieldId("preferred-contact")}
-          autoComplete="off"
-          aria-invalid={Boolean(errors.preferredContact)}
-          aria-describedby={
-            errors.preferredContact
-              ? fieldId("preferred-contact-error")
-              : undefined
-          }
-          {...register("preferredContact")}
-        >
-          <option value="">Keine Präferenz</option>
-          {preferredContactOptions.map((option) => (
-            <option value={option} key={option}>
-              {option}
-            </option>
-          ))}
-        </select>
-        <FieldError
-          error={errors.preferredContact}
-          id={fieldId("preferred-contact-error")}
-        />
-      </div>
-
       <div className="form-field form-field--checkbox">
         <input
           className="form-field__checkbox"
@@ -336,16 +270,38 @@ export function ContactForm() {
         />
         <div className="form-field__checkbox-copy">
           <label htmlFor={fieldId("privacy")}>
-            Ich habe die Datenschutzerklärung zur Verarbeitung meiner Angaben
-            zur Kenntnis genommen. <span aria-hidden="true">*</span>
+            Ich habe die{" "}
+            <Link href="/datenschutz">Datenschutzerklärung</Link> zur Kenntnis
+            genommen. <span aria-hidden="true">*</span>
           </label>
-          <p>
-            Weitere Informationen finden Sie in der{" "}
-            <Link href="/datenschutz">Datenschutzerklärung</Link>.
-          </p>
           <FieldError
             error={errors.privacyAccepted}
             id={fieldId("privacy-error")}
+          />
+        </div>
+      </div>
+
+      <div className="form-field form-field--checkbox">
+        <input
+          className="form-field__checkbox"
+          id={fieldId("terms")}
+          type="checkbox"
+          aria-required="true"
+          aria-invalid={Boolean(errors.termsAccepted)}
+          aria-describedby={
+            errors.termsAccepted ? fieldId("terms-error") : undefined
+          }
+          {...register("termsAccepted")}
+        />
+        <div className="form-field__checkbox-copy">
+          <label htmlFor={fieldId("terms")}>
+            Ich akzeptiere die{" "}
+            <Link href="/agb">Allgemeinen Geschäftsbedingungen (AGB)</Link>.{" "}
+            <span aria-hidden="true">*</span>
+          </label>
+          <FieldError
+            error={errors.termsAccepted}
+            id={fieldId("terms-error")}
           />
         </div>
       </div>

@@ -5,7 +5,7 @@ import { Container } from "@/components/ui/container";
 export const metadata: Metadata = {
   title: { absolute: "Vielen Dank für Ihre Anfrage | KAA" },
   description: "Ihre Anfrage wurde erfolgreich übermittelt.",
-  robots: { index: false, follow: false },
+  robots: { index: false, follow: true },
 };
 
 type Props = { searchParams: Promise<{ typ?: string }> };

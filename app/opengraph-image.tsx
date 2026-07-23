@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "KAA – KI-Automatisierungs-Agentur: KI, die wirklich arbeitet";
+export const alt =
+  "KAA – KI-Automatisierungs-Agentur für kontrollierbare Unternehmensprozesse";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -13,24 +14,212 @@ export default function OpenGraphImage() {
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        padding: 72,
-        color: "white",
-        background: "#0B0F17",
-        fontFamily: "Arial, sans-serif",
+        padding: "58px 64px",
+        color: "#FFFDF9",
+        backgroundColor: "#071018",
+        backgroundImage:
+          "linear-gradient(rgba(145,174,255,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(145,174,255,.07) 1px, transparent 1px)",
+        backgroundSize: "64px 64px",
+        fontFamily: "Arial, Helvetica, sans-serif",
         position: "relative",
         overflow: "hidden",
       }}
     >
-      <div style={{ position: "absolute", right: -170, top: -180, width: 560, height: 560, borderRadius: 999, border: "2px solid #273142", boxShadow: "0 0 0 70px rgba(36,84,214,.06), 0 0 0 140px rgba(36,84,214,.035)" }} />
-      <div style={{ display: "flex", alignItems: "center", gap: 26 }}>
-        <div style={{ width: 72, height: 72, borderRadius: 16, background: "#2454D6", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 32, fontWeight: 800 }}>K</div>
-        <div style={{ display: "flex", flexDirection: "column" }}><span style={{ fontSize: 34, fontWeight: 800, letterSpacing: -1 }}>KAA</span><span style={{ color: "#AAB6C6", fontSize: 17, letterSpacing: 2 }}>KI-AUTOMATISIERUNGS-AGENTUR</span></div>
+      <div
+        style={{
+          position: "absolute",
+          right: -210,
+          top: -250,
+          width: 650,
+          height: 650,
+          borderRadius: 999,
+          border: "1px solid rgba(145,174,255,.2)",
+          boxShadow:
+            "0 0 0 75px rgba(36,84,214,.035), 0 0 0 150px rgba(36,84,214,.02)",
+        }}
+      />
+
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
+          <div
+            style={{
+              width: 44,
+              height: 44,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              background: "#2454D6",
+              transform: "rotate(45deg)",
+            }}
+          >
+            <span
+              style={{
+                display: "flex",
+                transform: "rotate(-45deg)",
+                fontSize: 15,
+                fontWeight: 800,
+              }}
+            >
+              K
+            </span>
+          </div>
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <span
+              style={{
+                fontSize: 28,
+                fontWeight: 800,
+                letterSpacing: -1,
+              }}
+            >
+              KAA
+            </span>
+            <span
+              style={{
+                color: "#91AEFF",
+                fontSize: 12,
+                letterSpacing: 2,
+              }}
+            >
+              KI-AUTOMATISIERUNGS-AGENTUR
+            </span>
+          </div>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 10,
+            color: "#A8EAD9",
+            fontSize: 13,
+            letterSpacing: 1,
+          }}
+        >
+          <span
+            style={{
+              width: 9,
+              height: 9,
+              borderRadius: 9,
+              background: "#72D6BD",
+            }}
+          />
+          SYSTEM BEREIT
+        </div>
       </div>
-      <div style={{ display: "flex", flexDirection: "column", maxWidth: 900 }}>
-        <div style={{ color: "#7EA2FF", fontSize: 20, letterSpacing: 3, marginBottom: 22 }}>KONTROLLIERTE KI-LÖSUNGEN</div>
-        <div style={{ fontSize: 68, fontWeight: 700, letterSpacing: -3.5, lineHeight: 1.04 }}>KI, die in Ihrem Unternehmen wirklich arbeitet.</div>
+
+      <div
+        style={{
+          display: "flex",
+          alignItems: "flex-end",
+          justifyContent: "space-between",
+          gap: 50,
+        }}
+      >
+        <div
+          style={{
+            width: 700,
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <span
+            style={{
+              color: "#91AEFF",
+              fontSize: 15,
+              letterSpacing: 2.5,
+              marginBottom: 18,
+            }}
+          >
+            PROZESSE VERSTEHEN · SYSTEME VERBINDEN
+          </span>
+          <span
+            style={{
+              fontSize: 62,
+              fontWeight: 700,
+              letterSpacing: -3.5,
+              lineHeight: 0.98,
+            }}
+          >
+            KI-Automatisierung,
+          </span>
+          <span
+            style={{
+              color: "#CCFF66",
+              fontFamily: "Georgia, serif",
+              fontSize: 66,
+              fontStyle: "italic",
+              letterSpacing: -3,
+              lineHeight: 1,
+            }}
+          >
+            die mitarbeitet.
+          </span>
+        </div>
+
+        <div
+          style={{
+            width: 330,
+            display: "flex",
+            flexDirection: "column",
+            gap: 9,
+            padding: 14,
+            border: "1px solid #354759",
+            background: "rgba(13,24,34,.92)",
+          }}
+        >
+          {["E-Mail verstehen", "Daten verbinden", "Freigabe einholen"].map(
+            (label, index) => (
+              <div
+                key={label}
+                style={{
+                  minHeight: 48,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  padding: "0 14px",
+                  border: `1px solid ${index === 2 ? "#5D9D8E" : "#304355"}`,
+                  background: index === 2 ? "#112522" : "#101E2A",
+                  color: index === 2 ? "#C9F1E7" : "#DCE4EA",
+                  fontSize: 15,
+                }}
+              >
+                <span>{label}</span>
+                <span
+                  style={{
+                    color: index === 2 ? "#72D6BD" : "#91AEFF",
+                    fontSize: 12,
+                  }}
+                >
+                  0{index + 1} →
+                </span>
+              </div>
+            ),
+          )}
+        </div>
       </div>
-      <div style={{ display: "flex", alignItems: "center", gap: 14, color: "#B6C1D1", fontSize: 18 }}><span style={{ width: 10, height: 10, borderRadius: 10, background: "#58C8C0" }} /> Prozess verstehen <span style={{ color: "#536075" }}>→</span> Systeme verbinden <span style={{ color: "#536075" }}>→</span> Ergebnis kontrollieren</div>
+
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 18,
+          paddingTop: 18,
+          borderTop: "1px solid #2A3949",
+          color: "#9CA8B4",
+          fontSize: 14,
+        }}
+      >
+        Individuelle Lösungen
+        <span style={{ color: "#4D5E6E" }}>↗</span>
+        Bestehende Systeme
+        <span style={{ color: "#4D5E6E" }}>↗</span>
+        Kontrollierbare Abläufe
+      </div>
     </div>,
     size,
   );

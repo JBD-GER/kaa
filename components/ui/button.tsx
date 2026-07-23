@@ -8,6 +8,7 @@ type ButtonLinkProps = {
   children: ReactNode;
   variant?: ButtonVariant;
   className?: string;
+  prefetch?: boolean | null;
 } & Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href" | "className">;
 
 export function ButtonLink({

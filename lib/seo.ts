@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { company, SITE_URL, siteConfig } from "@/config/site";
+import { services } from "@/content/services";
 
 type MetadataInput = {
   title: string;
@@ -9,6 +10,8 @@ type MetadataInput = {
   type?: "website" | "article";
   publishedTime?: string;
   modifiedTime?: string;
+  imagePath?: string;
+  imageAlt?: string;
 };
 
 export function absoluteUrl(path = "/") {
@@ -23,17 +26,35 @@ export function createMetadata({
   type = "website",
   publishedTime,
   modifiedTime,
+  imagePath = "/opengraph-image",
+  imageAlt,
 }: MetadataInput): Metadata {
   const canonical = absoluteUrl(path);
-  const socialImage = absoluteUrl("/opengraph-image");
+  const socialImage = absoluteUrl(imagePath);
 
   return {
     title,
     description,
-    alternates: { canonical },
+    alternates: {
+      canonical,
+      languages: {
+        "de-DE": canonical,
+        "x-default": canonical,
+      },
+    },
     robots: noIndex
-      ? { index: false, follow: false }
-      : { index: true, follow: true },
+      ? { index: false, follow: true }
+      : {
+          index: true,
+          follow: true,
+          googleBot: {
+            index: true,
+            follow: true,
+            "max-image-preview": "large",
+            "max-snippet": -1,
+            "max-video-preview": -1,
+          },
+        },
     openGraph: {
       type,
       locale: siteConfig.locale,
@@ -46,7 +67,7 @@ export function createMetadata({
           url: socialImage,
           width: 1200,
           height: 630,
-          alt: "KAA – KI-Automatisierungs-Agentur",
+          alt: imageAlt ?? `${title} – KAA`,
         },
       ],
       ...(type === "article" ? { publishedTime, modifiedTime } : {}),
@@ -60,62 +81,93 @@ export function createMetadata({
   };
 }
 
-export const organizationJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
+const organizationEntity = {
+  "@type": ["Organization", "ProfessionalService"],
   "@id": `${SITE_URL}/#organization`,
   name: "KAA",
   alternateName: "KI-Automatisierungs-Agentur",
   legalName: company.legalName,
   url: SITE_URL,
-  logo: absoluteUrl("/brand/og-logo.svg"),
+  logo: {
+    "@type": "ImageObject",
+    "@id": `${SITE_URL}/#logo`,
+    url: absoluteUrl("/apple-icon.png"),
+    contentUrl: absoluteUrl("/apple-icon.png"),
+    width: 180,
+    height: 180,
+    caption: "KAA – KI-Automatisierungs-Agentur",
+  },
+  image: {
+    "@type": "ImageObject",
+    url: absoluteUrl("/opengraph-image"),
+    width: 1200,
+    height: 630,
+  },
   description: siteConfig.description,
   email: company.email,
-  telephone: company.phone,
+  telephone: company.phoneInternational,
+  vatID: company.vatId,
   address: {
     "@type": "PostalAddress",
     streetAddress: company.street,
     postalCode: company.postalCode,
     addressLocality: company.city,
+    addressRegion: company.state,
     addressCountry: company.countryCode,
   },
-};
-
-export const professionalServiceJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "@id": `${SITE_URL}/#professional-service`,
-  name: "KAA – KI-Automatisierungs-Agentur",
-  url: SITE_URL,
-  description: siteConfig.description,
-  email: company.email,
-  telephone: company.phone,
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: company.street,
-    postalCode: company.postalCode,
-    addressLocality: company.city,
-    addressCountry: company.countryCode,
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "customer service",
+    email: company.email,
+    telephone: company.phoneInternational,
+    availableLanguage: ["German"],
+    areaServed: "DE",
+  },
+  founder: {
+    "@type": "Person",
+    name: company.founder.name,
+    jobTitle: company.founder.role,
   },
   areaServed: { "@type": "Country", name: "Deutschland" },
-  serviceType: [
-    "KI-Beratung",
-    "KI-Assistenten",
+  knowsAbout: [
+    "KI-Automatisierung",
     "Prozessautomatisierung",
+    "KI-Assistenten",
+    "Systemintegration",
     "Wissenssysteme",
-    "Vertriebsautomatisierung",
     "Individuelle KI-Software",
   ],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "KI-Leistungen für Unternehmen",
+    itemListElement: services.map((service) => ({
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: service.name,
+        description: service.shortDescription,
+        url: absoluteUrl(`/leistungen/${service.slug}`),
+      },
+    })),
+  },
+  ...(company.social.length
+    ? { sameAs: company.social.map((profile) => profile.href) }
+    : {}),
 };
 
-export const websiteJsonLd = {
-  "@context": "https://schema.org",
+const websiteEntity = {
   "@type": "WebSite",
   "@id": `${SITE_URL}/#website`,
   url: SITE_URL,
   name: siteConfig.name,
+  alternateName: "KAA",
   inLanguage: "de-DE",
   publisher: { "@id": `${SITE_URL}/#organization` },
+};
+
+export const siteGraphJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [organizationEntity, websiteEntity],
 };
 
 export function breadcrumbJsonLd(
