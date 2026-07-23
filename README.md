@@ -35,15 +35,15 @@ npm run check
 
 Die Vorlage liegt in `.env.example`.
 
-| Variable                    | Zweck                                                                      |
-| --------------------------- | -------------------------------------------------------------------------- |
+| Variable                    | Zweck                                                                          |
+| --------------------------- | ------------------------------------------------------------------------------ |
 | `NEXT_PUBLIC_SITE_URL`      | Kanonische Website-URL; produktiv `https://www.ki-automatisierungs-agentur.de` |
-| `RESEND_API_KEY`            | Geheimer API-Schlüssel für Resend                                          |
-| `CONTACT_EMAIL`             | Interne Empfängeradresse für neue Anfragen                                 |
-| `FROM_EMAIL`                | Bei Resend verifizierter Absender, inklusive optionalem Anzeigenamen       |
-| `NEXT_PUBLIC_BOOKING_URL`   | Optionaler öffentlicher Terminbuchungslink                                 |
-| `NEXT_PUBLIC_CONTACT_EMAIL` | Optional sichtbare geschäftliche E-Mail-Adresse                            |
-| `NEXT_PUBLIC_CONTACT_PHONE` | Optional sichtbare Telefonnummer                                           |
+| `RESEND_API_KEY`            | Geheimer API-Schlüssel für Resend                                              |
+| `CONTACT_EMAIL`             | Interne Empfängeradresse für neue Anfragen                                     |
+| `FROM_EMAIL`                | Bei Resend verifizierter Absender, inklusive optionalem Anzeigenamen           |
+| `NEXT_PUBLIC_BOOKING_URL`   | Optionaler öffentlicher Terminbuchungslink                                     |
+| `NEXT_PUBLIC_CONTACT_EMAIL` | Optional sichtbare geschäftliche E-Mail-Adresse                                |
+| `NEXT_PUBLIC_CONTACT_PHONE` | Optional sichtbare Telefonnummer                                               |
 
 Geheime Werte niemals in `NEXT_PUBLIC_*`-Variablen oder den Quellcode eintragen. Ohne E-Mail-Konfiguration simuliert die API den Versand ausschließlich in der lokalen Entwicklungsumgebung. In Produktion antwortet sie sichtbar mit Status 503; eine Anfrage verschwindet dadurch nicht unbemerkt.
 
@@ -135,7 +135,7 @@ Das Consent-System liegt in `components/consent` und `lib/consent.ts`. Gespeiche
 - ISO-Zeitstempel
 - Auswahl für Notwendig, Statistik, Marketing und Externe Medien
 
-Optionale Kategorien sind standardmäßig deaktiviert. Google Consent Mode wird mit `denied` vorbereitet, ohne ein Google-Skript zu laden. Aktuell sind keine Statistik-, Marketing- oder externen Mediendienste eingebunden.
+Optionale Kategorien sind standardmäßig deaktiviert. Das Google Ads-Tag `AW-18344623572` ist global mit Advanced Consent Mode eingebunden. Die werbebezogenen Signale stehen standardmäßig auf `denied`; ohne Marketing-Einwilligung arbeitet das Tag ohne Werbe-Cookies, mit cookielosen Messimpulsen und aktivierter Anzeigen-Datenredaktion. Erst nach Zustimmung zur Kategorie „Marketing“ wird die vollständige Messung freigeschaltet. Aktuell sind keine Statistik- oder externen Mediendienste eingebunden.
 
 Bei einem neuen Dienst:
 

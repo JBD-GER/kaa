@@ -31,16 +31,16 @@ export function CookieBanner({
       <div className="consent-banner__inner">
         <div className="consent-banner__content">
           <p className="consent-banner__eyebrow">Datenschutz-Einstellungen</p>
-          <h2
-            className="consent-banner__title"
-            id={titleId}
-          >
+          <h2 className="consent-banner__title" id={titleId}>
             Sie entscheiden, welche Dienste aktiv sein dürfen.
           </h2>
           <p className="consent-banner__description" id={descriptionId}>
-            Notwendige Funktionen sind immer aktiv. Statistik, Marketing und
-            externe Medien verwenden wir nur mit Ihrer Einwilligung. Ihre
-            Auswahl können Sie jederzeit über „Cookie-Einstellungen“ ändern.
+            Notwendige Funktionen sind immer aktiv. Das Google Ads-Tag arbeitet
+            zunächst ohne Werbe-Cookies und mit verweigerten Werbe-Signalen.
+            Vollständige Marketingmessung, Statistik und externe Medien
+            verwenden wir nur mit Ihrer Einwilligung. Ihre Auswahl können Sie
+            jederzeit über „Cookie-Einstellungen“ ändern.{" "}
+            <a href="/datenschutz">Mehr zum Datenschutz</a>
           </p>
         </div>
 

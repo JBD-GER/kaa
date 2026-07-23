@@ -47,7 +47,7 @@ const categoryCopy: Array<{
     key: "marketing",
     title: "Marketing",
     description:
-      "Erlaubt nach Ihrer Einwilligung Dienste zur Messung und Steuerung von Marketingmaßnahmen.",
+      "Erlaubt Werbe-Cookies und die vollständige Google-Ads-Messung. Ohne Einwilligung arbeitet das Tag mit verweigerten Werbe-Signalen und cookielosen Messimpulsen.",
   },
   {
     key: "externalMedia",

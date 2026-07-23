@@ -134,6 +134,44 @@ export function removeStoredConsent(): void {
   }
 }
 
+/**
+ * Removes first-party Google Ads cookies that are visible to this website.
+ * Provider cookies on Google domains cannot be removed from this origin.
+ */
+export function clearGoogleAdsCookies(): void {
+  if (typeof window === "undefined") return;
+
+  const googleAdsCookieNames = document.cookie
+    .split(";")
+    .map((cookie) => cookie.split("=")[0]?.trim())
+    .filter(
+      (name): name is string =>
+        Boolean(name) && (name.startsWith("_gcl_") || name.startsWith("_gac_")),
+    );
+
+  if (!googleAdsCookieNames.length) return;
+
+  const hostname = window.location.hostname;
+  const domainParts = hostname.split(".");
+  const registrableDomain =
+    domainParts.length > 1 ? domainParts.slice(-2).join(".") : hostname;
+  const domains = [
+    "",
+    hostname,
+    `.${hostname}`,
+    registrableDomain,
+    `.${registrableDomain}`,
+  ];
+
+  for (const name of googleAdsCookieNames) {
+    for (const domain of new Set(domains)) {
+      document.cookie = `${name}=; Max-Age=0; path=/; SameSite=Lax${
+        domain ? `; domain=${domain}` : ""
+      }`;
+    }
+  }
+}
+
 function queueGoogleConsentCommand(
   command: GoogleConsentCommand,
   values: Record<string, GoogleConsentState | number>,
@@ -142,18 +180,21 @@ function queueGoogleConsentCommand(
 
   const consentWindow = window as ConsentWindow;
 
-  if (typeof consentWindow.gtag === "function") {
-    consentWindow.gtag("consent", command, values);
-    return;
+  consentWindow.dataLayer ??= [];
+  if (typeof consentWindow.gtag !== "function") {
+    consentWindow.gtag = function gtag() {
+      // gtag.js uses the function's Arguments object as its command format.
+      // eslint-disable-next-line prefer-rest-params
+      consentWindow.dataLayer?.push(arguments);
+    };
   }
 
-  consentWindow.dataLayer ??= [];
-  consentWindow.dataLayer.push(["consent", command, values]);
+  consentWindow.gtag("consent", command, values);
 }
 
 /**
- * Prepares Consent Mode without loading Google or any other external script.
- * A future tag integration can consume the queued dataLayer commands.
+ * Prepares Consent Mode without loading an external Google script.
+ * The queued commands are consumed if marketing consent later loads the tag.
  */
 export function initializeGoogleConsentMode(): void {
   if (typeof window === "undefined") return;

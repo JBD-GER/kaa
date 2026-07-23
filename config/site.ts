@@ -2,6 +2,8 @@ export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ??
   "https://www.ki-automatisierungs-agentur.de";
 
+export const GOOGLE_ADS_ID = "AW-18344623572";
+
 export const SITE_LAST_MODIFIED = "2026-07-23";
 
 export const company = {
@@ -17,8 +19,7 @@ export const company = {
   countryCode: "DE",
   phone: process.env.NEXT_PUBLIC_CONTACT_PHONE || "05761 8429666",
   phoneInternational:
-    process.env.NEXT_PUBLIC_CONTACT_PHONE_INTERNATIONAL ||
-    "+49 5761 8429666",
+    process.env.NEXT_PUBLIC_CONTACT_PHONE_INTERNATIONAL || "+49 5761 8429666",
   email:
     process.env.NEXT_PUBLIC_CONTACT_EMAIL ||
     "kontakt@ki-automatisierungs-agentur.de",
@@ -46,7 +47,7 @@ export const siteConfig = {
   defaultTitle: "KAA – KI-Automatisierungs-Agentur für Unternehmen",
   description:
     "KAA entwickelt individuelle KI-Lösungen, automatisiert wiederkehrende Aufgaben und verbindet bestehende Systeme zu intelligenten Unternehmensprozessen.",
-  consentVersion: "1.0",
+  consentVersion: "1.2",
   author: "KAA Redaktion",
   themeColor: "#071018",
 } as const;

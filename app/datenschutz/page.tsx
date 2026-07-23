@@ -45,7 +45,7 @@ export default function PrivacyPage() {
               <div className="legal-note legal-note--neutral">
                 <strong>Stand</strong>
                 <br />
-                21. Juli 2026
+                23. Juli 2026
               </div>
             </aside>
 
@@ -210,16 +210,78 @@ export default function PrivacyPage() {
               </section>
 
               <section>
-                <h2>7. Statistik, Marketing und externe Medien</h2>
+                <h2>7. Google Ads und Google Tag</h2>
                 <p>
-                  Derzeit lädt diese Website keine externen Statistik- oder
-                  Marketingdienste und keine zustimmungspflichtigen externen
-                  Medien. Die entsprechenden Kategorien in den
-                  Cookie-Einstellungen sind für eine mögliche spätere
-                  Erweiterung vorbereitet. Ein solcher Dienst darf erst nach
-                  Ihrer Einwilligung aktiviert werden; diese Erklärung wird vor
-                  einer Aktivierung um Anbieter, Zweck, Datenkategorien,
-                  Speicherdauer und Übermittlungsgrundlage ergänzt.
+                  Nach Ihrer Einwilligung in die Kategorie „Marketing“ laden wir
+                  das Google Tag für Google Ads mit der Kennung{" "}
+                  <code>AW-18344623572</code>. Anbieter für Nutzer im
+                  Europäischen Wirtschaftsraum ist Google Ireland Limited,
+                  Gordon House, Barrow Street, Dublin 4, Irland.
+                </p>
+                <p>
+                  Das Tag dient dazu, die Wirksamkeit unserer
+                  Google-Ads-Kampagnen zu messen und nachzuvollziehen, ob ein
+                  Anzeigenkontakt zu einem Besuch oder einer später
+                  eingerichteten Conversion auf unserer Website führt. Dabei
+                  können insbesondere IP-Adresse, Zeitpunkt, aufgerufene Seite,
+                  Referrer, Browser- und Geräteinformationen, der
+                  Einwilligungsstatus sowie vorhandene Anzeigenklick-Kennungen
+                  verarbeitet werden. Bei erteilter Einwilligung kann Google
+                  außerdem Cookies oder vergleichbare Kennungen auf Ihrem Gerät
+                  speichern oder auslesen.
+                </p>
+                <p>
+                  Wir verwenden den Advanced Consent Mode. Das Google Tag wird
+                  bei einem Seitenaufruf geladen, die werbebezogenen
+                  Consent-Signale stehen jedoch standardmäßig auf „denied“. Ohne
+                  Einwilligung setzt oder liest das Tag keine Werbe-Cookies. Es
+                  kann cookielose Messimpulse an Google senden. Diese können
+                  insbesondere den Einwilligungsstatus, Zeitpunkt,
+                  Browserinformationen, Referrer und gekürzte IP-Informationen
+                  enthalten. Mit der zusätzlichen Anzeigen-Datenredaktion werden
+                  Anzeigenklick-Kennungen bei verweigerter Speicherung weiter
+                  reduziert.
+                </p>
+                <p>
+                  Erst nach Ihrer Zustimmung zur Kategorie „Marketing“ werden
+                  die werbebezogenen Consent-Signale auf „granted“ gesetzt und
+                  die vollständige Google-Ads-Messung freigeschaltet. Bei einer
+                  Ablehnung oder einem Widerruf setzen wir die Signale wieder
+                  auf „denied“ und entfernen erreichbare, von diesem Dienst
+                  gesetzte First-Party-Cookies.
+                </p>
+                <p>
+                  Rechtsgrundlagen sind Ihre Einwilligung nach Art. 6 Abs. 1
+                  lit. a DSGVO sowie, soweit Informationen auf Ihrem Endgerät
+                  gespeichert oder ausgelesen werden, § 25 Abs. 1 TDDDG. Sie
+                  können die Einwilligung jederzeit über die
+                  Cookie-Einstellungen mit Wirkung für die Zukunft widerrufen.
+                </p>
+                <p>
+                  Eine Verarbeitung durch Google LLC in den USA und in anderen
+                  Drittländern kann nicht ausgeschlossen werden. Weitere
+                  Informationen finden Sie in der{" "}
+                  <a
+                    href="https://policies.google.com/privacy?hl=de"
+                    rel="noreferrer"
+                  >
+                    Datenschutzerklärung von Google
+                  </a>
+                  , in den{" "}
+                  <a
+                    href="https://business.safety.google/adscookies/"
+                    rel="noreferrer"
+                  >
+                    Hinweisen zu Cookies für Google-Werbeprodukte
+                  </a>{" "}
+                  und in den{" "}
+                  <a
+                    href="https://support.google.com/google-ads/answer/10000067?hl=de"
+                    rel="noreferrer"
+                  >
+                    Informationen zum Google Consent Mode
+                  </a>
+                  .
                 </p>
               </section>
 

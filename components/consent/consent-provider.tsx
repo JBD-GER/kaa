@@ -13,6 +13,7 @@ import {
 import {
   ACCEPT_ALL_CONSENT_PREFERENCES,
   announceConsentChange,
+  clearGoogleAdsCookies,
   CONSENT_STORAGE_KEY,
   createConsentRecord,
   DEFAULT_CONSENT_PREFERENCES,
@@ -76,6 +77,7 @@ export function ConsentProvider({ children }: ConsentProviderProps) {
         setHasDecision(true);
         setIsBannerOpen(false);
       } else {
+        clearGoogleAdsCookies();
         setPreferences(DEFAULT_CONSENT_PREFERENCES);
         setHasDecision(false);
         setIsBannerOpen(true);
@@ -88,12 +90,14 @@ export function ConsentProvider({ children }: ConsentProviderProps) {
 
       const updatedConsent = readStoredConsent();
       if (updatedConsent) {
+        if (!updatedConsent.categories.marketing) clearGoogleAdsCookies();
         setPreferences(updatedConsent.categories);
         setHasDecision(true);
         setIsBannerOpen(false);
         setIsSettingsOpen(false);
         updateGoogleConsentMode(updatedConsent.categories);
       } else {
+        clearGoogleAdsCookies();
         setPreferences(DEFAULT_CONSENT_PREFERENCES);
         setHasDecision(false);
         setIsBannerOpen(true);
@@ -116,6 +120,7 @@ export function ConsentProvider({ children }: ConsentProviderProps) {
       const record = createConsentRecord(normalizedPreferences);
 
       writeStoredConsent(record);
+      if (!record.categories.marketing) clearGoogleAdsCookies();
       setPreferences(record.categories);
       setHasDecision(true);
       setIsBannerOpen(false);
