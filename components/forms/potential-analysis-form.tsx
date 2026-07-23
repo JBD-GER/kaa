@@ -16,6 +16,7 @@ import {
   potentialAnalysisFormSchema,
   type PotentialAnalysisFormValues,
 } from "@/lib/validation";
+import { markGoogleAdsLeadConversionPending } from "@/lib/google-ads-conversion";
 
 type SubmissionStatus =
   | { state: "idle" }
@@ -128,6 +129,7 @@ export function PotentialAnalysisForm() {
         message:
           "Vielen Dank. Ihre Anfrage zur Potenzialanalyse wurde erfolgreich gesendet.",
       });
+      markGoogleAdsLeadConversionPending();
       router.push("/kontakt/danke?typ=potenzialanalyse");
     } catch {
       setSubmissionStatus({

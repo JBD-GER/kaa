@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 
 import { GOOGLE_ADS_LEAD_CONVERSION } from "@/config/site";
+import { consumeGoogleAdsLeadConversionPending } from "@/lib/google-ads-conversion";
 
 type GoogleAdsWindow = Window & {
   gtag?: (...args: unknown[]) => void;
@@ -16,6 +17,7 @@ export function GoogleAdsLeadConversion() {
 
     const googleWindow = window as GoogleAdsWindow;
     if (typeof googleWindow.gtag !== "function") return;
+    if (!consumeGoogleAdsLeadConversionPending()) return;
 
     sent.current = true;
     googleWindow.gtag("event", "conversion", {

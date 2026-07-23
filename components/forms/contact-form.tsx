@@ -11,10 +11,8 @@ import {
 } from "react-hook-form";
 
 import { serviceOptions } from "@/content/services";
-import {
-  contactFormSchema,
-  type ContactFormValues,
-} from "@/lib/validation";
+import { contactFormSchema, type ContactFormValues } from "@/lib/validation";
+import { markGoogleAdsLeadConversionPending } from "@/lib/google-ads-conversion";
 
 type SubmissionStatus =
   | { state: "idle" }
@@ -128,6 +126,7 @@ export function ContactForm({
         state: "success",
         message: "Vielen Dank. Ihre Anfrage wurde erfolgreich gesendet.",
       });
+      markGoogleAdsLeadConversionPending();
       router.push("/kontakt/danke?typ=kontakt");
     } catch {
       setSubmissionStatus({
@@ -270,9 +269,8 @@ export function ContactForm({
         />
         <div className="form-field__checkbox-copy">
           <label htmlFor={fieldId("privacy")}>
-            Ich habe die{" "}
-            <Link href="/datenschutz">Datenschutzerklärung</Link> zur Kenntnis
-            genommen. <span aria-hidden="true">*</span>
+            Ich habe die <Link href="/datenschutz">Datenschutzerklärung</Link>{" "}
+            zur Kenntnis genommen. <span aria-hidden="true">*</span>
           </label>
           <FieldError
             error={errors.privacyAccepted}
