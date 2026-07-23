@@ -1,6 +1,8 @@
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ??
-  "https://ki-automatisierungs-agentur.de";
+  "https://www.ki-automatisierungs-agentur.de";
+
+export const SITE_LAST_MODIFIED = "2026-07-23";
 
 export const company = {
   brand: "KAA",

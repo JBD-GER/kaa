@@ -53,11 +53,20 @@ export default function AboutPage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "AboutPage",
+    "@id": `${absoluteUrl("/ueber-uns")}#webpage`,
     name: "Über KAA",
     url: absoluteUrl("/ueber-uns"),
     description:
       "KAA verbindet technisches Verständnis mit einem klaren Blick auf reale Unternehmensprozesse.",
     about: { "@id": `${absoluteUrl()}/#organization` },
+    mainEntity: {
+      "@type": "Person",
+      "@id": `${absoluteUrl()}/#founder`,
+      name: company.founder.name,
+      jobTitle: company.founder.role,
+      description: company.founder.biography,
+      worksFor: { "@id": `${absoluteUrl()}/#organization` },
+    },
   };
 
   return (

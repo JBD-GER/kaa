@@ -109,6 +109,7 @@ const organizationEntity = {
   vatID: company.vatId,
   address: {
     "@type": "PostalAddress",
+    "@id": `${SITE_URL}/#postal-address`,
     streetAddress: company.street,
     postalCode: company.postalCode,
     addressLocality: company.city,
@@ -117,6 +118,7 @@ const organizationEntity = {
   },
   contactPoint: {
     "@type": "ContactPoint",
+    "@id": `${SITE_URL}/#contact-point`,
     contactType: "customer service",
     email: company.email,
     telephone: company.phoneInternational,
@@ -125,8 +127,12 @@ const organizationEntity = {
   },
   founder: {
     "@type": "Person",
+    "@id": `${SITE_URL}/#founder`,
     name: company.founder.name,
     jobTitle: company.founder.role,
+    description: company.founder.biography,
+    url: absoluteUrl("/ueber-uns"),
+    worksFor: { "@id": `${SITE_URL}/#organization` },
   },
   areaServed: { "@type": "Country", name: "Deutschland" },
   knowsAbout: [
@@ -142,8 +148,10 @@ const organizationEntity = {
     name: "KI-Leistungen für Unternehmen",
     itemListElement: services.map((service) => ({
       "@type": "Offer",
+      "@id": `${absoluteUrl(`/leistungen/${service.slug}`)}#offer`,
       itemOffered: {
         "@type": "Service",
+        "@id": `${absoluteUrl(`/leistungen/${service.slug}`)}#service`,
         name: service.name,
         description: service.shortDescription,
         url: absoluteUrl(`/leistungen/${service.slug}`),
@@ -161,6 +169,7 @@ const websiteEntity = {
   url: SITE_URL,
   name: siteConfig.name,
   alternateName: "KAA",
+  description: siteConfig.description,
   inLanguage: "de-DE",
   publisher: { "@id": `${SITE_URL}/#organization` },
 };

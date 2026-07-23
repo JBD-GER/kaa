@@ -8,6 +8,7 @@ import { ServiceOverview } from "@/components/service-overview";
 import { ButtonLink } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { SectionHeader } from "@/components/ui/section-header";
+import { SITE_LAST_MODIFIED } from "@/config/site";
 import { homeFaqs } from "@/content/faqs";
 import { services } from "@/content/services";
 import { useCases } from "@/content/use-cases";
@@ -142,7 +143,7 @@ export default function HomePage() {
     inLanguage: "de-DE",
     isPartOf: { "@id": `${pageUrl}/#website` },
     about: { "@id": `${pageUrl}/#organization` },
-    dateModified: "2026-07-23",
+    dateModified: SITE_LAST_MODIFIED,
   };
   const serviceListJsonLd = {
     "@context": "https://schema.org",

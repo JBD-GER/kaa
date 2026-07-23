@@ -2,9 +2,12 @@ import type { NextConfig } from "next";
 
 const canonicalUrl = (
   process.env.NEXT_PUBLIC_SITE_URL ??
-  "https://ki-automatisierungs-agentur.de"
+  "https://www.ki-automatisierungs-agentur.de"
 ).replace(/\/$/, "");
 const canonicalHost = new URL(canonicalUrl).host;
+const alternateHost = canonicalHost.startsWith("www.")
+  ? canonicalHost.slice(4)
+  : `www.${canonicalHost}`;
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
@@ -33,7 +36,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/:path*",
-        has: [{ type: "host", value: `www.${canonicalHost}` }],
+        has: [{ type: "host", value: alternateHost }],
         destination: `${canonicalUrl}/:path*`,
         permanent: true,
       },

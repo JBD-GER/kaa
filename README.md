@@ -2,7 +2,7 @@
 
 Produktionsnahe Unternehmenswebsite für **KAA** auf Basis von Next.js App Router, React, TypeScript und Tailwind CSS. Die Website enthält alle Leistungs-, Unternehmens-, Ratgeber-, Kontakt- und Rechtsseiten sowie ein echtes Consent-System, serverseitig validierte Formulare und eine vollständige SEO-Grundlage.
 
-Die zentrale Domain ist `https://ki-automatisierungs-agentur.de`.
+Die zentrale Domain ist `https://www.ki-automatisierungs-agentur.de`.
 
 > Wichtig vor dem Go-live: E-Mail-Umgebungsvariablen setzen, Absenderdomain verifizieren und Impressum, Datenschutzerklärung sowie AGB anhand der tatsächlichen Verträge und eingesetzten Dienstleister juristisch prüfen lassen.
 
@@ -37,7 +37,7 @@ Die Vorlage liegt in `.env.example`.
 
 | Variable                    | Zweck                                                                      |
 | --------------------------- | -------------------------------------------------------------------------- |
-| `NEXT_PUBLIC_SITE_URL`      | Kanonische Website-URL; produktiv `https://ki-automatisierungs-agentur.de` |
+| `NEXT_PUBLIC_SITE_URL`      | Kanonische Website-URL; produktiv `https://www.ki-automatisierungs-agentur.de` |
 | `RESEND_API_KEY`            | Geheimer API-Schlüssel für Resend                                          |
 | `CONTACT_EMAIL`             | Interne Empfängeradresse für neue Anfragen                                 |
 | `FROM_EMAIL`                | Bei Resend verifizierter Absender, inklusive optionalem Anzeigenamen       |
@@ -164,7 +164,7 @@ Farben, Typografie, Abstände und responsive Regeln werden über CSS-Variablen u
 ## SEO und Sitemap prüfen
 
 - `lib/seo.ts`: zentrale Metadata- und strukturierte Daten-Helfer
-- `app/sitemap.ts`: statische Seiten, sechs Leistungsseiten und alle Artikel
+- `app/sitemap.ts`: statische Seiten sowie alle Leistungs-, Anwendungsfall-, Branchen- und Ratgeberseiten
 - `app/robots.ts`: Robots-Regeln und Sitemap-Verweis
 - `app/opengraph-image.tsx`: serverseitig erzeugtes Social-Preview
 - `next.config.ts`: vorbereitete Redirect-Verwaltung und Security-Header
@@ -172,8 +172,8 @@ Farben, Typografie, Abstände und responsive Regeln werden über CSS-Variablen u
 Nach jedem größeren Inhaltsupdate prüfen:
 
 ```text
-https://ki-automatisierungs-agentur.de/robots.txt
-https://ki-automatisierungs-agentur.de/sitemap.xml
+https://www.ki-automatisierungs-agentur.de/robots.txt
+https://www.ki-automatisierungs-agentur.de/sitemap.xml
 ```
 
 Außerdem Canonical, Meta-Titel, Meta-Beschreibung, Open Graph, X-Metadaten, Breadcrumbs und JSON-LD auf Startseite, Leistungsdetailseite, Artikel, FAQ, Kontakt und Über uns kontrollieren.

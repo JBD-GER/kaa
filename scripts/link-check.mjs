@@ -1,5 +1,8 @@
 const siteUrl = process.env.QA_SITE_URL ?? "http://127.0.0.1:3000";
-const canonicalOrigin = "https://ki-automatisierungs-agentur.de";
+const canonicalOrigin = (
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  "https://www.ki-automatisierungs-agentur.de"
+).replace(/\/$/, "");
 const queue = ["/"];
 const checked = new Map();
 
