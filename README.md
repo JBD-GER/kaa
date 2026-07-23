@@ -135,7 +135,7 @@ Das Consent-System liegt in `components/consent` und `lib/consent.ts`. Gespeiche
 - ISO-Zeitstempel
 - Auswahl für Notwendig, Statistik, Marketing und Externe Medien
 
-Optionale Kategorien sind standardmäßig deaktiviert. Das Google Ads-Tag `AW-18344623572` ist global mit Advanced Consent Mode eingebunden. Die werbebezogenen Signale stehen standardmäßig auf `denied`; ohne Marketing-Einwilligung arbeitet das Tag ohne Werbe-Cookies, mit cookielosen Messimpulsen und aktivierter Anzeigen-Datenredaktion. Erst nach Zustimmung zur Kategorie „Marketing“ wird die vollständige Messung freigeschaltet. Aktuell sind keine Statistik- oder externen Mediendienste eingebunden.
+Optionale Kategorien sind standardmäßig deaktiviert. Das Google Ads-Tag `AW-18344623572` ist global mit Advanced Consent Mode eingebunden. Die werbebezogenen Signale stehen standardmäßig auf `denied`; ohne Marketing-Einwilligung arbeitet das Tag ohne Werbe-Cookies, mit cookielosen Messimpulsen und aktivierter Anzeigen-Datenredaktion. Erst nach Zustimmung zur Kategorie „Marketing“ wird die vollständige Messung freigeschaltet. Die Danke-Seite sendet die Lead-Conversion `AW-18344623572/OcSeCMe5rNUcENT7sqtE`. Aktuell sind keine Statistik- oder externen Mediendienste eingebunden.
 
 Bei einem neuen Dienst:
 

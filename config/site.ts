@@ -3,6 +3,7 @@ export const SITE_URL =
   "https://www.ki-automatisierungs-agentur.de";
 
 export const GOOGLE_ADS_ID = "AW-18344623572";
+export const GOOGLE_ADS_LEAD_CONVERSION = "AW-18344623572/OcSeCMe5rNUcENT7sqtE";
 
 export const SITE_LAST_MODIFIED = "2026-07-23";
 
@@ -47,7 +48,7 @@ export const siteConfig = {
   defaultTitle: "KAA – KI-Automatisierungs-Agentur für Unternehmen",
   description:
     "KAA entwickelt individuelle KI-Lösungen, automatisiert wiederkehrende Aufgaben und verbindet bestehende Systeme zu intelligenten Unternehmensprozessen.",
-  consentVersion: "1.2",
+  consentVersion: "1.3",
   author: "KAA Redaktion",
   themeColor: "#071018",
 } as const;

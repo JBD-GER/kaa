@@ -221,14 +221,17 @@ export default function PrivacyPage() {
                 <p>
                   Das Tag dient dazu, die Wirksamkeit unserer
                   Google-Ads-Kampagnen zu messen und nachzuvollziehen, ob ein
-                  Anzeigenkontakt zu einem Besuch oder einer später
-                  eingerichteten Conversion auf unserer Website führt. Dabei
-                  können insbesondere IP-Adresse, Zeitpunkt, aufgerufene Seite,
-                  Referrer, Browser- und Geräteinformationen, der
-                  Einwilligungsstatus sowie vorhandene Anzeigenklick-Kennungen
-                  verarbeitet werden. Bei erteilter Einwilligung kann Google
-                  außerdem Cookies oder vergleichbare Kennungen auf Ihrem Gerät
-                  speichern oder auslesen.
+                  Anzeigenkontakt zu einem Besuch oder einer
+                  Formularübermittlung auf unserer Website führt. Nach einer
+                  erfolgreichen Übermittlung sendet die Danke-Seite ein
+                  Conversion-Ereignis mit dem technischen Wert 1 EUR an Google
+                  Ads. Formularinhalte und Kontaktdaten sind nicht Bestandteil
+                  dieses Ereignisses. Dabei können insbesondere IP-Adresse,
+                  Zeitpunkt, aufgerufene Seite, Referrer, Browser- und
+                  Geräteinformationen, der Einwilligungsstatus sowie vorhandene
+                  Anzeigenklick-Kennungen verarbeitet werden. Bei erteilter
+                  Einwilligung kann Google außerdem Cookies oder vergleichbare
+                  Kennungen auf Ihrem Gerät speichern oder auslesen.
                 </p>
                 <p>
                   Wir verwenden den Advanced Consent Mode. Das Google Tag wird
